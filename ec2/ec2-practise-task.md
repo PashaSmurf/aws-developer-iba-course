@@ -52,5 +52,18 @@ Then you need enter your script such as :
 
 Task ended!
 
+### Setup EC2 using userdata and create a static public ip address. Reproduce previous step, attach elastic ip, reboot instance, test it via elastic ip.
+
+Just create ec2-instance, add the elastic ip, (remember public ip) stop the ec2-instance.
+Run instance again.
+As you can see with elastic ip our public ip is not changed. Check it in your browser.
+
+![](assets/public-elastic-ip.png)
+
+Remember! Delete all what you did.
+
+Task ended!
+
+
 
 
