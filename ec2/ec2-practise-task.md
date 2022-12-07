@@ -159,3 +159,33 @@ Since I have three instances, when checking through the ALB, I will receive 3 di
 Task ended!
 
 ### Don't forget to delete everything you've done.
+
+### Spot Fleet
+
+- Creating a launch template with default settings, with t2.micro linux image and httpd userdata.
+- Create an auto scaling group and test it via ALB.
+- Create Spot Fleet Request with existing launch template.
+- Test instance via public IP.
+- Interrupt a Spot Instance directly from Amazon EC2 Console.
+- What is the difference between allocation strategy?
+
+Now we have launch template, if not create it.
+Next we need create ASG with ALB and target group. (Don`t use the previous, create new)
+![](assets/asg.png)
+Choose configuration is needed.
+
+Next create Spot Fleet Request with existing launch template.
+
+![](assets/spot-instance.png)
+![](assets/spot-temp.png)
+
+After creating check it through public ip
+
+![](assets/hw.png)
+
+Then interrupt it.
+
+Task ended!
+
+### Don't forget to delete everything you've done.
+
