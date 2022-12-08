@@ -158,4 +158,31 @@ Since I have three instances, when checking through the ALB, I will receive 3 di
 
 Task ended!
 
-### Don't forget to delete everything you've done.
+#### Don't forget to delete everything you've done.
+
+### Create AMI with httpd server. Create ec2 with httpd and html page. Launch instance using AMI and test that httpd works.
+
+First of all you need to create ec2 instance. Then you can do AMI.
+![](assets/ami.png)
+
+Then delete your ec2 instance and launch new from AMI. And check it through the public IP.
+
+![](assets/ec2-ami.png)
+
+![](assets/ami-check.png)
+
+Task ended!
+
+#### Don't forget to delete everything you've done.
+
+### 7. Launch Configuration and Autoscaling group
+
+- Create launch configuration using previous AMI and autoscaling group based on it.
+  Test it via ALB.
+
+Click on Launch Configuration - Create Launch Configuration with AMI.
+Then check how it`s work,through ALB.
+
+Task ended!
+
+#### Don't forget to delete everything you've done.
