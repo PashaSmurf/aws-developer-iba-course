@@ -158,6 +158,96 @@ Since I have three instances, when checking through the ALB, I will receive 3 di
 
 Task ended!
 
+#### Don't forget to delete everything you've done.
+
+### EBS and ec2
+- Create EC2. Create EBS. Attach it to newly created ec2. 
+- Create a file on this new EBS.
+- Create a second Ec2 and reattach this ebs to the second ec2.
+- Ssh to the second instance and double check that you have a file from the first instance
+
+You need create ec2 and new EBS volume.
+Then attach EBS volume to ec2-instance.
+
+Selected EBS is new.
+![](assets/new-ebs.png)
+Click - Actions - Attach volume and choose your ec2-instance.
+![](assets/attach-ebs.png)
+And EBS already attached to ec2.
+![](assets/ec2-ebs.png)
+
+Then via ssh connect to your ec2.
+
+![](assets/connect-ec2.png)
+
+Then you need create file ( for example text.txt )
+
+![](assets/text.png)
+
+How to do it you can find here : [Link] : https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
+
+After this, detach your created EBS volume from ec2.
+Create new ec2 and attach EBS volume with file to new ec2 and check the file from this ec2.
+
+Task ended!
+
+#### Don't forget to delete everything you've done
+
+### EFS and ec2
+- Create EC2. Create EFS.
+- Attach EFS to EC2.
+- Try to upload a file on EFS from this EC2.
+
+![](assets/create-efs.png)
+
+![](assets/efs-hello.png)
+
+Task ended!
+
+#### Don't forget to delete everything you've done
+
+### EBS and ec2
+- Create an EC2 instance with next ebs settings:
+
+  - Create one more ebs volume
+  - Do not delete after instance terminated
+  - Type: gp3
+  - Name: /dev/sdy/
+  - Encrypted using default key
+
+- Delete ec2 instance, test that your ebs volume is still there.
+- Delete it.
+
+![](assets/sec-ebs.png)
+
+Our ec2 has two EBS volumes
+![](assets/two-ebs.png)
+![](assets/two-ebs-vol.png)
+
+Then delete ec2 and test that your ebs volume is still there.
+As you can see, we have only one EBS volume. Why? Where is the first?
+
+![](assets/one-ebs.png)
+
+Task ended!
+
+#### Don't forget to delete everything you've done
+
+### Placement Groups
+- Create all 3 types of placement groups.
+- Launch 2 instances in each.
+- Describe the difference.
+
+Create Placement Groups
+
+![](assets/create-pg.png)
+
+Launch ec2 in each.
+
+![](assets/ec2-pg.png)
+
+Task ended!
+
 
 #### Don't forget to delete everything you've done.
 
