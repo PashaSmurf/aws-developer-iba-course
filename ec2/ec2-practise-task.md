@@ -111,4 +111,51 @@ Task ended!
 
 ### Don't forget to delete everything you've done.
 
- hello 
+### 6. Setup highly available server stack using ALB + Target Group
+
+- Create a fleet of EC2 instances ( at least 2 servers) with your userdata. You can use the Launch template from the previous step.
+- Create a target group. (use Instances for target type)
+- Create ALB. Choose at least two subnets, don`t forget to create a security group for alb.
+  Test your application via ALB DNS name.
+- Make sure your server does not accessible via server public ip (only from ALB)
+  (This should be done via properly configured security group)
+
+You need to create 3 ec2 instance in different AZ for high availability.
+
+![](assets/ec2-3AZ.png)
+
+Then you should create a target group and also register your ec2 instances in it.
+
+![](assets/create-tg.png)
+Enter a name and leave the default settings.
+
+Next step is creating ALB. (Choose ALB)
+![](assets/create-alb.png)
+![](assets/alb.png)
+
+Enter name of your ALB, choose all AZ (for High Availability), create a new security group for ALB.
+In "Listeners and routing" you need forward to your target group. And click - create.
+
+#### Before setting up, open all your servers in the browser and see what they are available to you!
+![](assets/result-hello-world.png)
+
+After this steps you need configure security groups.
+In SG of ALB inbound rules will be http and outbound rules will be SG of your instances.
+
+In SG of your instance inbound rules will be the ALB SG and outbound rules keep default.
+
+If you right configure, you will see that your ec2 instances UNAVAILABLE from public IP
+
+![](assets/error-ec2.png)
+
+And if you check through ALB you can see that it works
+
+Since I have three instances, when checking through the ALB, I will receive 3 different IPs, since our ALB redirects traffic to them.
+
+![](assets/in1.png)
+![](assets/in2.png)
+![](assets/in3.png)
+
+Task ended!
+
+### Don't forget to delete everything you've done.
