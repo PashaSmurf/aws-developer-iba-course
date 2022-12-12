@@ -14,16 +14,16 @@
 
 
 Create SNS topic
-![](assets/create-sns.png)
+![](picture/create-sns.png)
 
 Subscribe to an SNS Topic. (via email)
-![](assets/sns-email.png)
+![](picture/sns-email.png)
 
 Check EC2 CPU Utilization Metrics in CloudWatch Metrics.
-![](assets/cw-metrics.png)
+![](picture/cw-metrics.png)
 
 Create CloudWatch Alarm. (Select setting which is needed(CPUUtilization, your sns topic))
-![](assets/cw-alarm.png)
+![](picture/cw-alarm.png)
 
 Note : [Link] : https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
 
@@ -31,10 +31,10 @@ Note : [Link] : https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-vo
 Next connect to ec2 and test it.
 Then check the email, you will receive message from AWS.
 Check CloudWatch Alarm Graph and create CW Dashboard.
-![](assets/alarm-cw.png)
+![](picture/alarm-cw.png)
 
 And create CloudWatch Dashboard.
-![](assets/cw-dash.png)
+![](picture/cw-dash.png)
 
 Task ended!
 
@@ -52,9 +52,9 @@ Just follow the link:
 [Link] : https://jason-6.medium.com/how-to-setup-cloudwatch-agent-on-ec2s-f7de5b2d2b66
 
 Note : Answer on questions!
-![](assets/cw-agent.png)
+![](picture/cw-agent.png)
 View the metric
-![](assets/cw-metric.png)
+![](picture/cw-metric.png)
 
 
 Task ended!
@@ -73,15 +73,15 @@ threshold to 3 units.
 - Publish a message to the topic when the ALARM state is triggered. Set the alarm name to 5xx-alarm.
 
 Create SNS and Subscribe
-![](assets/create-sns.png)
-![](assets/sns-email.png)
+![](picture/create-sns.png)
+![](picture/sns-email.png)
 
 Create a log group
-![](assets/logs.png)
-![](assets/log-12.png)
+![](picture/logs.png)
+![](picture/log-12.png)
 
 Create a metric filter, open and test.
-![](assets/create-metric.png)
-![](assets/cw-filter-metrics.png)
+![](picture/create-metric.png)
+![](picture/cw-filter-metrics.png)
 
 And create alarm on it.

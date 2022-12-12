@@ -10,13 +10,13 @@
 - SQS points to remember.
 
 
-![](assets/sqs-standart.png)
+![](picture/sqs-standart.png)
 
 Try sent message
-![](assets/send-sms.png)
+![](picture/send-sms.png)
 
 And read it.
-![](assets/read-sqs.png)
+![](picture/read-sqs.png)
 
 Task ended!
 
@@ -29,15 +29,15 @@ Task ended!
 - Check the CloudWatch Logs.
 
 Create queue
-![](assets/sqs-standart.png)
+![](picture/sqs-standart.png)
 
 Create and configure Lambda function as in the diagram.
-![](assets/create-config-lambda.png)
+![](picture/create-config-lambda.png)
 
 After creating Lambda and configure send message.
 
-![](assets/lambda-cw-logs.png)
-![](assets/cw-logs.png)
+![](picture/lambda-cw-logs.png)
+![](picture/cw-logs.png)
 
 Task ended!
 
