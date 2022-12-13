@@ -10,7 +10,7 @@ RUN mvn clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackag
 
 #copy source
 COPY ../src ./src
-COPY buildspec.yml .
+COPY cicd/sample-java-app/buildspec.yml .
 
 # build the app (no dependency download here)
 RUN mvn clean package  -Dmaven.test.skip
