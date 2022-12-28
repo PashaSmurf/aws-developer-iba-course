@@ -115,3 +115,11 @@ fields @timestamp, @message, action, nonTerminatingMatchingRules.0.action, ruleG
 So now our k6 finished and we may check the results:
 ![img_7.png](assets/k6_rate_results.png)
 As we can see only 11% of our requests was 200, the rest of them were blocked by our rate rule
+
+But! now lets add ip-set with our k6 instance ip as allowed rule and put it as first for our waf:
+![img.png](assets/allow_ip.png)
+And run our k6:
+![img_1.png](assets/k6_succsecscs.png)
+Now its allowed because our rule is in higher priority and its allows our traffic from k6
+
+But if you will put our ip rule lower than the rate one, then... try it yourself!
