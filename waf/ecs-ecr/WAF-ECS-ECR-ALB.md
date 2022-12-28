@@ -70,6 +70,20 @@ Even in case that we dont have such endpoint:
 ![img_27.png](assets/waf_works_2.png)
 ![img_28.png](assets/waf_works_3.png)
 
+As well we can add ip set
+
+First, lets get our ip [here](https://ip4.me)
+
+Then lets create set itself, using mask 32, because its our just our single ip:
+![img.png](assets/ip_Set_creation.png)
+Next go to our waf and add new rule:
+![img_1.png](assets/ip_Set_rule.png)
+Lets enable custom response as a text as well to be sure that it works:
+![img_2.png](assets/ip_set_responce.png)
+
+And now try ro connect again and we will see this:
+![img_3.png](assets/ip_set_check.png)
+
 Now lets test it via [k6](../../k6/K6.md):
 
 This is with the correct url that not blocked with WAF:
@@ -83,3 +97,21 @@ And thats will be our output:
 
 As well as our log insights:
 ![img_33.png](assets/log_insights.png)
+
+But! To protect us from some DOS/DDOS we also can add rate-based rules:
+![img_4.png](assets/rate-based-rule.png)
+Now lets run our k6 again
+
+While its running we may check our log insights(clientIp here is the ip of our instance with k6):
+![img_5.png](assets/log_insights_allow.png)
+As we can see everything is ok, but lets wait a bit more and add filter for blocked requests:
+![img_6.png](assets/log_insights_block.png)
+```
+fields @timestamp, @message, action, nonTerminatingMatchingRules.0.action, ruleGroupList.0.terminatingRule.ruleId, terminatingRuleId, httpRequest.clientIp, httpRequest.uri
+| filter action = "BLOCK"
+| filter httpRequest.clientIp = "K6_IP"
+```
+
+So now our k6 finished and we may check the results:
+![img_7.png](assets/k6_rate_results.png)
+As we can see only 11% of our requests was 200, the rest of them were blocked by our rate rule
