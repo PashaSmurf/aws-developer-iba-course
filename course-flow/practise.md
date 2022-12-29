@@ -855,9 +855,9 @@ Username
 Email
 Password
 
-Send verification code on email, email only
-Configure email sender address, configure reply to address
-Edit message template to add some custom stuff.
+* Send verification code on email, email only
+* Configure email sender address, configure reply to address
+* Edit message template to add some custom stuff.
 
 * Remember user device
 
@@ -892,10 +892,7 @@ Edit message template to add some custom stuff.
 Test sign up & sign in process
 
 
-
-
-Additional task:
-* Build a Serverless Web Application with AWS Lambda, Amazon API Gateway, AWS Amplify, Amazon DynamoDB, and Amazon Cognito
+* Additional task: Build a Serverless Web Application with AWS Lambda, Amazon API Gateway, AWS Amplify, Amazon DynamoDB, and Amazon Cognito
 
 [https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/]
 
