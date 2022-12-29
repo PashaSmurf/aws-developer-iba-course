@@ -855,9 +855,9 @@ Username
 Email
 Password
 
-Send verification code on email, email only
-Configure email sender address, configure reply to address
-Edit message template to add some custom stuff.
+* Send verification code on email, email only
+* Configure email sender address, configure reply to address
+* Edit message template to add some custom stuff.
 
 * Remember user device
 
