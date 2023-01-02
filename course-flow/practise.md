@@ -1,4 +1,4 @@
-
+`
 # Table of contents
 1. [EC2](#ec2)
 2. [Some paragraph](#paragraph1)
@@ -13,27 +13,27 @@
 
 #### Goal: Get hands-on experience with aws core service: EC2.
 
-* Launch internet accessible web server using ec2 with manual setup
+#### Launch internet accessible web server using ec2 with manual setup
 Launch ec2 instance, setup web server using httpd and html page, test it via public ip address.
 
 
-* Setup EC2 using userdata
+####  Setup EC2 using userdata
 Automate step 1 using userdata. Do your steps to set up a web server via userdata, test it via a public ip address.
 
 
-* Setup EC2 using userdata and create a static public ip address.
+####  Setup EC2 using userdata and create a static public ip address.
 Reproduce previous step, attach elastic ip, reboot instance, test it via elastic ip.
 
-* Create an ec2 server and test access for S3.
+####  Create an ec2 server and test access for S3.
 Create a test s3 bucket (just a simple s3 bucket with full default settings).
 Create EC2 and try to get a list of S3 buckets in the account. You should get an error, google it and try to understand why.
 Fix the error using iam role with right iam permissions.
 
-* Launch template
+####  Launch template
 Create a Launch template with basic settings and userdata.
 Test it via public ip.
 
-* Setup highly available server stack using ALB + Target Group
+####  Setup highly available server stack using ALB + Target Group
 Create a fleet of EC2 instances ( at least 2 servers) with your userdata. You can use the Launch template from the previous step.
 Create a target group. (use Instances for target type)
 Create ALB. Choose at least two subnets, don`t forget to create a security group for alb.
@@ -41,7 +41,7 @@ Test your application via ALB DNS name.
 Make sure your server does not accessible via server public ip (only from ALB)
 (This should be done via properly configured security group)
 
-* Spot Fleet
+####  Spot Fleet
 Creating a launch template with default settings, with t2.micro linux image and httpd userdata.
 Create an auto scaling group and test it via ALB.
 Create Spot Fleet Request with existing launch template.
@@ -49,29 +49,29 @@ Test instance via public IP.
 Interrupt a Spot Instance directly from Amazon EC2 Console.
 What is the difference between allocation strategy?
 
-* Create AMI with httpd server
+####  Create AMI with httpd server
 Create ec2 with httpd and html page. Launch instance using AMI and test that httpd works.
 
-* Launch Configuration and Autoscaling group
+####  Launch Configuration and Autoscaling group
 Create launch configuration using previous AMI and autoscaling group based on it.
 Test it via ALB.
 
 
 #### EBS & EFS
 
-* EBS and ec2
+####  EBS and ec2
 Create EC2. Create EBS. Attach it to newly created ec2.
 Create a file on this new EBS.
 Create a second Ec2 and reattach this ebs to the second ec2.
 Ssh to the second instance and double check that you have a file from the first instance
 
 
-* EFS and ec2
+####  EFS and ec2
 Create EC2. Create EFS.
 Attach EFS to EC2.
 Try to upload a file on EFS from this EC2.
 
-* EBS and EC2
+####  EBS and EC2
 Create an EC2 instance with next ebs settings:
 Create one more ebs volume
 Do not delete after instance terminated
@@ -81,7 +81,7 @@ Encrypted using default key
 Delete ec2 instance, test that your ebs volume is still there.
 Delete it.
 
-* Placement Group
+####  Placement Group
 Create all 3 types of placement groups.
 Launch 2 instances in each.
 Describe the difference.
@@ -97,7 +97,7 @@ Describe the difference.
 
 # CloudWatch, SNS, SQS
 
-* Using CloudWatch for Resource Monitoring, Create CloudWatch Alarms and Dashboards
+####  Using CloudWatch for Resource Monitoring, Create CloudWatch Alarms and Dashboards
 Create EC2 Instance.SSH into EC2 Instance.
 Create SNS Topic.
 Subscribe to an SNS Topic. (via email)
@@ -109,7 +109,7 @@ Checking the CloudWatch Alarm Graph.
 Create a CloudWatch Dashboard.
 
 
-* Install CloudWatch Logs Agent on EC2 Instance and View CloudWatch Metrics
+####  Install CloudWatch Logs Agent on EC2 Instance and View CloudWatch Metrics
 Create an EC2 instance.
 SSH into EC2 Instance.
 Download and Install the Cloudwatch agent on EC2.
@@ -119,7 +119,7 @@ View the metric in the Cloudwatch Metrics.
 ![img.png](assets/sqs_1.png)
 
 
-* Create an Alarm Using a Metric Filter
+####  Create an Alarm Using a Metric Filter
 
 Create an SNS topic
 Create an email subscription to the topic
@@ -138,7 +138,7 @@ Create a metric filter using the previous log group and name it http-5xx-metric.
 
 #### SQS
 
-* Introduction to Simple Queuing Service
+####  Introduction to Simple Queuing Service
 Create FIFO and Standard Queue using the Console.
 What is Long Polling and configuring Long Polling for the queue.
 What is Visibility Timeout and configuring Visibility Timeout.
@@ -153,9 +153,9 @@ SQS points to remember.
 
 
 
-  
 
-* Creating CloudWatch Logs for SQS by Triggering a Lambda function
+
+#### Creating CloudWatch Logs for SQS by Triggering a Lambda function
 Create a SQS Queue.
 Create a Lambda Function.
 Check the CloudWatch Logs.
@@ -163,7 +163,7 @@ Check the CloudWatch Logs.
 ![img_2.png](assets/sqs_3.png)
 
 
-* Add SNS subscription filtering for SQS
+####  Add SNS subscription filtering for SQS
 https://aws.amazon.com/getting-started/hands-on/filter-messages-published-to-topics/
 
 
@@ -172,18 +172,18 @@ https://aws.amazon.com/getting-started/hands-on/filter-messages-published-to-top
 # Route53
 
 
-* Assign A record for your EC2
+####  Assign A record for your EC2
 Create ec2 with httpd web server in public subnet
 Create A record in ec2 for IP address of ec2
 Test it
 
-* Alias setup for EC2
+####  Alias setup for EC2
 Create ec2 with httpd web server in public subnet
 Create ALB and target group
 Create alias for alb.
 Test it
 
-* Private hosted zone
+####  Private hosted zone
 Create a ec2 instance in private subnet
 Create internal ALB + target group
 Create private hosted zone and point alias to this ALB
@@ -203,7 +203,7 @@ Create a bastion in the public subnet and try to ping this ec2 using the hosted 
 
 
 
-* Create manual VPC setup
+#### Create manual VPC setup
 
 VPC setup:
 2 availability zones
@@ -218,7 +218,7 @@ SSH to instance in private and database subnet
 Test instances with ping command (What should be added to the security group ? )
 
 
-* VPC peering
+#### VPC peering
 Goal: We want to have 2 private ec2 instances that will talk via a private network. Make them behave as if they were in the same vpc.
 
 Create VPC A and VPC B in different regions.
@@ -243,7 +243,7 @@ Add ICMP for VPC cidr range for instance vpc b security group (for ping)
 
 
 
-* VPC Gateway endpoint
+#### VPC Gateway endpoint
 Goal: upload file in s3 bucket using vpc gateway endpoint without using public internet
 
 Create a default S3 bucket
@@ -256,7 +256,7 @@ Choose your vpc and choose a private subnet.
 Create a text file in a private instance.
 Upload it on your s3 bucket: aws s3 cp file.name s3://bucket-name  -- region name
 
-* VPC Interface endpoint and SQS
+#### VPC Interface endpoint and SQS
 Goal: access aws services with private network using vpc interface endpoint
 
 Create a VPC with 2 subnets: 1 public 1 private
@@ -276,7 +276,7 @@ Example of the send message command: https://docs.aws.amazon.com/cli/latest/refe
 
 
 
-* VPC via Cloudformation
+####  VPC via Cloudformation
 Create a vpc with template.
 Compare vpc from CloudFormation with manually vpc from taks 1.
 Create a vpc setup from step 1 via cloudformation.
@@ -303,7 +303,7 @@ Test it in the same way with ec2 instances.
 # ESC & ECR
 
 
-* Deploy web application using ECS Based on Ec2 & Fargate
+####  Deploy web application using ECS Based on Ec2 & Fargate
 
 
 1. Deploy ECS task using EC2
@@ -325,7 +325,7 @@ Test it via alias
 
 
 
-* Create the same setup as above for ECS using Cloudformation
+####  Create the same setup as above for ECS using Cloudformation
 
 Note. route53 should be set manually
 
@@ -351,7 +351,7 @@ Note. route53 should be set manually
 * Create cloudformation for step 2.
 
 
-* Pipeline for git lab:
+Pipeline for git lab:
 1. Build project
 2. Run tests (if exists)
 3. Create image and push to ECR via docker
@@ -375,7 +375,7 @@ Setup this pipeline to be able to download code from CodeCommit, build it using 
 
 # SAM
 
-* Create, build and Deploy a Sample Hello World App using AWS SAM
+#### Create, build and Deploy a Sample Hello World App using AWS SAM
 SSH into EC2 Instance using Session Manager
 Install Docker, AWS CLI, and SAM CLI
 Configure the AWS CLI on EC2 Instance
@@ -384,7 +384,7 @@ Build and Deploy your application
 
 ![img.png](assets/sam_1.png)
 
-* Create a Serverless app using SAM: API Gateway, Lambda, DynamoDB.
+#### Create a Serverless app using SAM: API Gateway, Lambda, DynamoDB.
 
 To create a DynamoDB Table: Type: AWS::Serverless::SimpleTable
 To create API Gateway: Type: AWS::Serverless::Api
@@ -400,7 +400,7 @@ sam deploy --guided
 * Why do we need sam?
 * How hoes sam work?
 * SAM vs Cloudformation
-* List out some of the commands used in AWS SAM CLI
+* List out commands used in AWS SAM CLI
 * Which languages does sam support?
 
 
@@ -408,29 +408,29 @@ sam deploy --guided
 
 # RDS
 
-* RDS based on PostgreSQL + Cloudwatch metrics
-Create RDS with Postgresql engine.
-Connect to db with dbier(?) добавь ссылку потом
-Test db with java application with add and get
-Create a read replica
-Make old db read only
-Promote read replicate to standalone db
-Kill old db
-Test new db with Java application
-Make a snapshot
-Delete db
-Restore via snapshot
-Resice db to bigger size via maintain window
+#### RDS based on PostgreSQL + Cloudwatch metrics
+* Create RDS with Postgresql engine.
+* Connect to db with dbviewer or other tool
+* Test db with java application with add and get
+* Create a read replica
+* Make old db read only
+* Promote read replicate to standalone db
+* Kill old db
+* Test new db with Java application
+* Make a snapshot
+* Delete db
+* Restore via snapshot
+* Resize db to bigger size via maintain window
 
-* RDS Multi-AZ + failover In custom VPC + Cloudwatch insights
-Create custom VPC
-Place db into private subnet
-Create mysqldb multi az
-Connect and test that is works via ec2 bastion или хз как еще придуамй
-Simulate failover (reboot) Which other options exist?
-Check that az changes
+#### RDS Multi-AZ + failover In custom VPC + Cloudwatch insights
+* Create custom VPC
+* Place db into private subnet
+* Create mysqldb multi az
+* Connect and test that is works via ec2 bastion или хз как еще придуамй
+* Simulate failover (reboot) Which other options exist?
+* Check that az changes
 
-Note:
+_Note:_
 Amazon RDS provides an option to simulate Availability Zone failure and High Availability (HA) by offering an option to reboot the Oracle DB instance with the failover. This option initiates Availability Zone level failover and the instance on the secondary Availability Zone becomes primary, and the instance on the primary Availability Zone becomes secondary.
 
 * RDS snapshot + encryption
@@ -445,63 +445,119 @@ Amazon RDS provides an option to simulate Availability Zone failure and High Ava
 
 
 
-* RDS + AWS Backup
+#### RDS + AWS Backup
 Goal: create automatic backup strategy using AWS Backup service
 
-https://aws.amazon.com/getting-started/hands-on/amazon-rds-backup-restore-using-aws-backup/
+[Flow](https://aws.amazon.com/getting-started/hands-on/amazon-rds-backup-restore-using-aws-backup/)
 
 
-#### Aurora
+#### RDS Cloudformation for Postgresql
 
-Ispolsuy silky no don use cloud9 use ec2 with creds (mojno role)
-I delay please tolko to chto ya snizy videlil
+Create a script:
+* Environment as parameter
+* Name as parameter
+* instance class as list + parameter
+* Storage type as list
+* public accessible as param default false
+* port, username, password as parameter
+* multi-az parameter
+* delete on termination as parameter
+* Include other params as you wish
+* Configure backup
+* Create a good output section
 
-(https://awsauroralabsmy.com/provisioned/failover/#2-testing-a-manual-db-cluster-failover) (
-Create a new db cluster manually
-Retrieve endpoints
-Create a replica autoscaling (target 15%, 180 seconds for both, min 1, max 2)
-Connect to db, add table and test data
-
-Test your read replica autoscaling (write simple python script to load your read endpoint add see how new reader provisioned)
-
-Monitor performance insight after this
-
-Create a CLONE using aws rds restore-db-cluster-to-point-in-time
-
-Test a manual db cluster failover using SNS (https://awsauroralabsmy.com/provisioned/failover/#2-testing-a-manual-db-cluster-failover)
-
-Create an RDS Proxy https://awsauroralabsmy.com/provisioned/failover/#5-using-rds-proxy-to-minimize-failover-disruptions
+Parameter group should be created in the same template with default settings
+* override or create new at least one parameter
 
 
+### Aurora
 
+
+#### Create an Aurora database with PostgreSQL or Mysql engine
+
+Goal: just to create a manual setup in **private** VPC (you need to create it previously) , connect to db and review  a possible db settings.
+* You need to find which option do we have to connect to db in private subnet. [Examples](https://www.linkedin.com/pulse/connecting-rds-db-private-subnet-aws-from-using-ssm-port-srinivasan/?trk=pulse-article_more-articles_related-content-card)
+* Choose an option, best one is NLB.
+* Connect to db, create a table and make a test select
+
+
+#### Aurora DB: Performance insight, Test fault tolerance, Global Database, 
+
+##### You can use this guide as a good example, [guide link](https://awsauroralabsmy.com/provisioned/create/)
+Steps:
+* Create a new db cluster manually
+* Create a replica autoscaling and test it (use python for test) (target 15%, 180 seconds for both, min 1, max 2) [Example](https://awsauroralabsmy.com/provisioned/autoscale/)
+* [Monitor performance insight, generate load and take a look metrics](https://awsauroralabsmy.com/provisioned/perf-insights/)
+* [Create a CLONE using aws rds restore-db-cluster-to-point-in-time](https://awsauroralabsmy.com/provisioned/clone/)
+* [Test a manual db cluster failover using SNS](https://awsauroralabsmy.com/provisioned/failover/#2-testing-a-manual-db-cluster-failover) 
+* [Create an RDS Proxy](https://awsauroralabsmy.com/provisioned/failover/#5-using-rds-proxy-to-minimize-failover-disruptions)
+* [Test fault Tolerance](https://awsauroralabsmy.com/provisioned/failover/)
+  * Set up failover event notifications
+  * Test a manual DB cluster failover 
+  * Test fault injection queries (Simulate engine crash)
+  * Test a failover with cluster awareness
+  * Use RDS Proxy to minimize failover disruptions
+
+
+#### Aurora serverless
+
+##### Serverless v1
+Goal: Create a serverless database. Use Aurora Serverless v1 with AWS Lambda and RDS Data API.
+
+* Create an Amazon Aurora Serverless v1 database manually. Note: [example](https://catalog.us-east-1.prod.workshops.aws/workshops/098605dc-8eee-4e84-85e9-c5c6c9e43de2/en-US/lab10-aurora-serverless/setup)
+* Connect to the DB, create table users with few fields
+* [Example of lambda](https://catalog.us-east-1.prod.workshops.aws/workshops/098605dc-8eee-4e84-85e9-c5c6c9e43de2/en-US/lab10-aurora-serverless/lambda)
+* Create lambda to be able to save data into DB
+* Create lambda to be able to get user by id, or get all users (based on a payload in the request)
+* Attach this lambdas to API gateway or ALB (explain or choice)
+* Move DB connection parameters to Secret Manager
+* Integrate RDS Proxy. Explain why it is a good solution.
+* Optional: Create a lambda layer with a generic code: retrieve SM parameters, connect to db, etc. on your choice
+
+##### With previous setup do the same with Serverless v2
+
+* After you completed lab setup you need to test db scaling. [example of metrics](https://catalog.us-east-1.prod.workshops.aws/workshops/098605dc-8eee-4e84-85e9-c5c6c9e43de2/en-US/lab13-aurora-serverless-v2/scaling)
+* Next step is to test mixed-configuration cluster. [Example](https://catalog.us-east-1.prod.workshops.aws/workshops/098605dc-8eee-4e84-85e9-c5c6c9e43de2/en-US/lab13-aurora-serverless-v2/provtoserverless)
+* Convert a provisioned reader to Serverless v2 reader
+* Convert a provisioned writer to Serverless v2 writer
+* Modify the minimum and maximum ACU for the Serverless v2 cluster
+* Fallback and convert cluster to provisioned
+
+#### RDS Aurora CloudFormation
+
+* All dynamic info should be parameters
+* Enable encryption, keys on your choice
+* Create good output section
+* Be ready to describe your setup choice
 
 
 
 ### DynamoDB
 Structure: (Determine keyAttributes, PartitionKey, sortKey, NonKeyAttributes)!!
-Product Cart
-customerId
-Status&Date
-Price
-Count
-Status
+* Product Cart
+* customerId
+* Status&Date
+* Price
+* Count
+* Status
+
+* Create DynamoDB table
+* Create lambda function on python that will insert data in dynamodb
+* Create lambda function that will retrieve data from dynamodb (list)
+* Create lambda to get by id
+
+#### DynamoDB + DAX
+* Add DAX caching for previous DB
+* Three nodes in different availability zones (1 in each)
+
+#### Cloudformation for DynamoDB
+Goal: You need to create a cloudformation script for dynamodb with Dax cache
 
 
-Create DynamoDB table
-Create lambda function on python that will insert data in dynamodb
-Create lambda function that will retrieve data from dynamodb
 
-
-
-DynamoDB + DAX
-Add DAX caching for previous DB
-Three nodes in different availability zones (1 in each)
-
-
-
-Questions:
-
-DynamoDB DAX vs Redis
+#### Questions:
+* DynamoDB DAX vs Redis
+* Aurora serverless v1 vs v2
 
 
 
@@ -510,44 +566,46 @@ DynamoDB DAX vs Redis
 # ElasticCache: Redis + Memcahed
 
 
-Create web application using Java or Python
+### Create web application using Java or Python
 
-RDS Postgresql as a database
+* RDS Postgresql as a database
 
 ElasticCache  Redis as a cache implementation
-NodeType: micro
-Replicas: 1
-Auto failover ON
-Vpc default
-Specify maintenance window as night
-Specify daily backups
+* NodeType: micro
+* Replicas: 1
+* Auto failover ON
+* Vpc default
+* Specify maintenance window as night
+* Specify daily backups
 
 Table:
-Users
-Id
-firstName
-lastName
-phoneNumber
+* Users
+* Id
+* firstName
+* lastName
+* phoneNumber
 
-Goal: When POST user, add to db then to cache
-When GET user firstly check in-memory cache than go to DB.
-When DELETE user firstly delete from cache than from db
+Goal: 
+* When POST user, add to db then to cache
+* When GET user firstly check in-memory cache than go to DB.
+* When DELETE user firstly delete from cache than from db
 
-Deploy your application on EC2
+Flow:
+* Deploy your application on EC2
+* Test it via load balancer
 
-Test it via load balancer
 
-
-Create a redis based library
-Create a memcached based library
+Optional:
+#### Create a redis based library
+#### Create a memcached based library
 
 
 
 	Questions:
-What is the difference between Redis and Memcached?
-Which cache strategies do you know?
-How encryption works for both?
-How does scaling work for both?
+* What is the difference between Redis and Memcached?
+* Which cache strategies do you know?
+* How encryption works for both?
+* How does scaling work for both?
 
 
 
@@ -556,102 +614,78 @@ How does scaling work for both?
 # DynamoDB API Gateway Lambda Secret Manager X-Ray
 
 
-* Create serverless application
+#### Create serverless application
 Goal: create an application to save products
 
-Create a dynamoDb table for products
-Create a lambda function based on Python to receive a POST request with Product data. Required: Id,productName, productCost.
-//Not-required: array of strings for description, not more than 6 elements
-Create a GET logic to return all products in the database.
-Create an API Gateway for two methods, GET and POST
-Test application via postman.
-
-Create rds  and setup Lambda based on Python
-Create an RDS database (postgres)
-Connect to it via pgadmin and create 1 table users, fields: id, personal_number,  first_name, last_name.
-Create a python application that will connect to the database and insert users from POST request and return users via GET request
-Create a lambda function based on this python app.
-Create an ALB and adjust your lambda response (https://docs.aws.amazon.com/lambda/latest/dg/services-alb.html)
-Database connection should be out of lambda code inside lambda
-Pass database url via environment variable.
-Create few versions of lambda by changing print line (should print v1 and v2 for appropriate version)
-Create an alias for v1 as dev and v2 as prod.
-Create a weighted rule for 50% and 50% for aliases.
-Enable AWS X-Ray and take a look on a service map.
-Make a few calls and view the results.
-Move DB credentials to Secret Manager at the final step and test your lambda.
-
-How to create layer (https://www.geeksforgeeks.org/how-to-install-python-packages-for-aws-lambda-layers/)
-How to get pg dep
-https://github.com/jkehler/awslambda-psycopg2
+* Create a dynamoDb table for products
+* Create a lambda function based on Python to receive a POST request with Product data. Required: Id,productName, productCost.
+* //Not-required: array of strings for description, not more than 6 elements
+* Create a GET logic to return all products in the database.
+* Create an API Gateway for two methods, GET and POST
+* Test application via postman.
+* Create rds  and setup Lambda based on Python
+* Create an RDS database (postgres)
+* Connect to it via pgadmin and create 1 table users, fields: id, personal_number,  first_name, last_name.
+* Create a python application that will connect to the database and insert users from POST request and return users via GET request
+* Create a lambda function based on this python app.
+* Create an ALB and adjust your lambda response (https://docs.aws.amazon.com/lambda/latest/dg/services-alb.html)
+* Database connection should be out of lambda code inside lambda
+* Pass database url via environment variable.
+* Create few versions of lambda by changing print line (should print v1 and v2 for appropriate version)
+* Create an alias for v1 as dev and v2 as prod.
+* Create a weighted rule for 50% and 50% for aliases.
+* Enable AWS X-Ray and take a look on a service map.
+* Make a few calls and view the results.
+* Move DB credentials to Secret Manager at the final step and test your lambda.
+* How to create layer (https://www.geeksforgeeks.org/how-to-install-python-packages-for-aws-lambda-layers/)
+* How to get pg dep
+* https://github.com/jkehler/awslambda-psycopg2
 
 
 
-* Create an architecture to store S3 objects metadata inside of dynamodb using lambdas
+#### Create an architecture to store S3 objects metadata inside dynamodb using lambdas
 
-Create S3 bucket
-Create a lambda function to add a new record with file metadata to the table of dynamodb
-Create a Dynamodb table and setup invoke of lambda function on uploading in S3
-Create another lambda to retrieve image metadata (name, extension, url)
-Create API Gateway and point it on this lambda
-Test it and see if you will upload object to s3 you will have a record in dynamodb
+* Create S3 bucket
+* Create a lambda function to add a new record with file metadata to the table of dynamodb
+* Create a Dynamodb table and setup invoke of lambda function on uploading in S3
+* Create another lambda to retrieve image metadata (name, extension, url)
+* Create API Gateway and point it on this lambda
+* Test it and see if you will upload object to s3 you will have a record in dynamodb
 
-
-
-
-Create a web rest server with 1 get endpoint and deploy it to ec2 or ecs.
-
-Create a lambda function to be able to send HTTP requests with a payload based on Python
-
-Create event bridge cron jobs to call your application every 5 min.
-
-Run your application locally and make it available via Ngrok
-
-Run your application into Ec2 with ALB and update eventBridge payload
-
-Note: application here  just a simple 1 endpoint app.
-
-Check logs via Cloudwatch
-
-
-
-S3 + eventBridge + Event notification + SNS + Email message
-
-Create s3 bucket
-Create a standard SNS topic
-Create SES subscription for your email
-Setup event notification for s3 with EventBridge
-
-
+* Create a web rest server with 1 get endpoint and deploy it to ec2 or ecs.
+* Create a lambda function to be able to send HTTP requests with a payload based on Python
+* Create event bridge cron jobs to call your application every 5 min.
+* Run your application locally and make it available via Ngrok
+* Optional: Run your application into Ec2 with ALB and update eventBridge payload
+* Note: application here  just a simple 1 endpoint app.
+* Check logs via Cloudwatch
 
 
 # CronJobs via aws: EventBridge + Lambda
 
-
 AWS Lambda & AWS EventBridge
 
-Create a web rest server with 1 get endpoint and deploy it to ec2 or ecs.
+* Create a web rest server with 1 get endpoint and deploy it to ec2 or ecs.
 
-Create a lambda function to be able to send HTTP requests with a payload Python + NodeJs (both!)
+* Create a lambda function to be able to send HTTP requests with a payload Python + NodeJs (both!)
 
-Create event bridge cron jobs to call your application every 5 min.
+* Create event bridge cron jobs to call your application every 5 min.
 
-Run your application locally and make it available via Ngrok
+* Run your application locally and make it available via Ngrok
 
-Run your application into Ec2 with ALB and update eventBridge payload
+* Run your application into Ec2 with ALB and update eventBridge payload
 
-Note: application here could be from step 2 but also it can be just a simple 1 endpoint app.
-
-
-S3 + eventBridge + Event notification + SNS + Email message
-
-Create s3 bucket
-Create a standard SNS topic
-Create SES subscription for your email
-Setup event notification for s3 with EventBridge
+* Note: application here could be from step 2 but also it can be just a simple 1 endpoint app.
 
 
-Theory:
+### S3 + eventBridge + Event notification + SNS + Email message
+
+Goal: You need to set up an architecture to provide an email for s3 events
+
+* Create s3 bucket
+* Create a standard SNS topic
+* Create SES subscription for your email
+* Setup event notification for s3 with EventBridge
 
 
 
@@ -660,7 +694,7 @@ Theory:
 # S3 + CloudFront, AWS Shield, WAF
 
 
-* Versioning for s3 bucket
+#### Versioning for s3 bucket
 Create a bucket
 Add file
 Enable versioning
@@ -668,26 +702,26 @@ Add one more file
 Add one more file with the same  name
 View how versioning works
 
-* Backup for s3 bucket
+#### Backup for s3 bucket
 
 Create a backup for previous bucket to another bucket
 
-* Deploy a static website using S3
+#### Deploy a static website using S3
 
 Create 2 pages: simple html page + error page for your website
 Add route53 record for your bucket and test your website via record.
 Add js script of html snippet from another bucket and configure fetch from another s3 bucket. Setup right CORS.
 
-* Setup lifecycle policy for s3 bucket files
+####  Setup lifecycle policy for s3 bucket files
 
 Setup a lifecycle policies for different.
 One file from Standard to OneZone-IA
 Another one from Standard to Standard-IA
 
-* S3 Encryption: Setup s3 server side encryption
+####  S3 Encryption: Setup s3 server side encryption
 Set encryption for server side for your bucket
 
-* S3 Encryption: Setup s3 kms encryption
+####  S3 Encryption: Setup s3 kms encryption
 Change encryption for kms using aws manage key
 Change for kms with a custom managed key.
 
@@ -697,89 +731,87 @@ Change for kms with a custom managed key.
 #### Load testing & K6 & artillery
 
 Test load testing using K6 and 2 ec2 instances
-1. создать ес2 инстанс, пложить туда 1 сприн бут endpoint приложение которое будет возвращать ответ string ,+ писать лог sout Инстанс для прилажки
-   Ендоинт дожлен создеалть в себе pathVariable
-   users/{slovo} и в коде ты дожлен писать жто слово это позволит видеть что к6 берет разные пути
-2. создать инстас для ьестирвоания (большоц!!) пондятьна нем простейший скрипт k6
-   Взять интсуркцию что кидал и закинуть 2 файла на сервер с к6: сам скрипт + file with urls
-   Запустить скрипт (также можно прсотьре логи к6 котроые он будет писать в рядом лежащий файл)
+1. create an ec2 instance, put there 1 spin boot endpoint application that will return a string response, + write a log sout Instance for adjustment
+Endpoint must create a pathVariable in itself
+users/{slovo} and in the code you have to write that word this will allow you to see that k6 takes different paths
+2. create an instance for Testing (great!!) run a simple k6 script on it
+   Take the instructions that he threw and upload 2 files to the server with k6: the script itself + file with urls
+   Run the script (you can also copy k6 logs which it will write to a nearby file)
 
-   
 
-* Cloudfront & s3
+####  Cloudfront & s3
 
-Take s3 bucket with static website from previous step
-Add cloudfront distribution for bucket
-Describe why it is a good architecture
-Setup Route53 for cloudfront
+* Take s3 bucket with static website from previous step
+* Add cloudfront distribution for bucket
+* Describe why it is a good architecture
+* Setup Route53 for cloudfront
 
-* WAF & ALB
+####  WAF & ALB
 
-Create a simple 1 rest endpoint application and deploy it with EC2 using ALB and target group.
+* Create a simple 1 rest endpoint application and deploy it with EC2 using ALB and target group.
+ 
+* Create WAF and try to add a Limit rule and manage rules: AWSManagedRulesAmazonIpReputationList AWSManagedRulesKnownBadInputsRuleSet
+ 
+* Attach WAF to the ALB
+ 
+* Test it via ec2 instance with k6 script from previous step. See if the requests will be blocked
 
-Create WAF and try to add a Limit rule and manage rules: AWSManagedRulesAmazonIpReputationList AWSManagedRulesKnownBadInputsRuleSet
-
-Attach WAF to the ALB
-
-Test it via ec2 instance with k6 script from previous step. See if the requests will be blocked
-
-Show statistics via cloudwatch insight. (waf should stream data for analysis there).
-Find all blocked requests count
-Take a ip address of your ec2 with k6 and find count of request from this IP address
-Override limit rule to COUNT and reproduce test.
-Create a ipSet with ip address of your k6 instance
-Create an IP set rule to allow all calls from this IP address and put it first in a list of rules.
-Test it one more time and see if your requests would be blocked by Rating rule (rule must be in BLOCK mode)
-
+* Show statistics via cloudwatch insight. (waf should stream data for analysis there).
+* Find all blocked requests count
+* Take an ip address of your ec2 with k6 and find count of request from this IP address
+* Override limit rule to COUNT and reproduce test.
+* Create a ipSet with ip address of your k6 instance
+* Create an IP set rule to allow all calls from this IP address and put it first in a list of rules.
+* Test it one more time and see if your requests would be blocked by Rating rule (rule must be in BLOCK mode)
+* 
 All count request
+```
 fields @timestamp, @message, action, nonTerminatingMatchingRules.0.action, ruleGroupList.0.terminatingRule.ruleId, terminatingRuleId, httpRequest.clientIp, httpRequest.uri
 | filter nonTerminatingMatchingRules.0.action = "COUNT"
+```
 
 All blocked requests with uri
+```
 fields @timestamp, @message, action, nonTerminatingMatchingRules.0.action, ruleGroupList.0.terminatingRule.ruleId, terminatingRuleId, httpRequest.clientIp, httpRequest.uri
 | filter action = "BLOCK"
 | filter httpRequest.uri = "/"
 | stats count(*)
+```
 
 
 
+####  Create cloudformation template for waf ACL
+* Create waf via cloudformation with 2 aws managed groups for your choice.
+* Add 1 Custom Limit rule for 2000 reqs per 5 minute
+* Add 1 Custom rule to block based on header or rule (on your choice)
+* Deploy it and test via ALB + ec2 simple setup
+
+####  Cloudfront & WAF
+
+* Add Cloudfront distribution for your ec2 app from prev step
+* Attach precious WAF to the cloudfront* 
+* Point Cloudfront to the ALB
+
+* Test your setup with k6 and with hands
+* Describe why it better than previous step
 
 
+####  ECS + ECR + ALB + **WAF** + ROUTE53
 
-* Create cloudformation template for waf ACL
-Create waf via clodufromation with 2 aws managed groups for your choice.
-Add 1 Custom Limit rule for 2000 reqs per 5 minute
-Add 1 Custom rule to block based on header or rule (on your choice)
-Deploy it and test via ALB + ec2 simple setup
+* Take a cloudformation from the ECS step.
+* Create deployment based on java single endpoint app with url with PATH variable.
+* Create a WAF manually and attach it to ALB.
+* (Add aws managed rules:
+* AWSManagedRulesAmazonIpReputationList & AWSManagedRulesKnownBadInputsRuleSet)
+* (Create custom rule to block all request that contains word block in url)
+* (Create a custom rule to allow all request that contains word allow in url)
+* Create Route53 alias for ALB.
+* Test that it works and waf block/allow works properly
 
-* Cloudfront & WAF
-
-Add Cloudfront distribution for your ec2 app from prev step
-Attach precious WAF to the cloudfront
-
-Point Cloudfront to the ALB
-
-Test your setup with k6 and with hands
-
-Describe why it better than previous step
-
-
-* ECS + ECR + ALB + **WAF** + ROUTE53
-
-Take a cloudformation from the ECS step.
-Create deployment based on java single endpoint app with url with PATH variable.
-Create a WAF manually and attach it to ALB.
-(Add aws managed rules:
-AWSManagedRulesAmazonIpReputationList & AWSManagedRulesKnownBadInputsRuleSet)
-(Create custom rule to block all request that contains word block in url)
-(Create a custom rule to allow all request that contains word allow in url)
-Create Route53 alias for ALB.
-Test that it works and waf block/allow works properly
-
-Add waf to your cloudformation with these 4 rules.
-Delete your manually created waf.
-Redeploy your template and see if you have the same waf.
-Test it again.
+* Add waf to your cloudformation with these 4 rules.
+* Delete your manually created waf.
+* Redeploy your template and see if you have the same waf.
+* Test it again.
 
 
 ##### Questions:
@@ -824,24 +856,23 @@ Test it again.
 # AWS Autoscaling
 
 
-Create cloudformation to deploy it automatically (note, that image still will be pushed to ecr manually)
 
+#### Create an autoscaling process for ECS
 
-Implement auto scaling for ecs based on CPU or Memory metric
+Goal: You need to add Step scaling as a first step, second step would be Scheduling scaling
 
-We need to implement step scaling policies.
-Test it via postman or simple k6 script from another instance.
+* Add manual Target scaling policy to your ECS cluster (you can use your cloudformation from previous tasks)
+* Add Step scaling policy for your ECS cluster
+* Add scheduling scaling policy to your cluster
+* Add a Step scaling policy via Cloudformation. Deploy and test it using k6. Take a look on a cloudwatch
+* Add Scheduling scaling policy via cloudformation as a **second** scaling.
 
-Learn about autoscaling.
-Compare Simple, Target Step and Scheduling scaling policies.
-
-
-Extended cloudformation template from step 3 with Authoscalling
-
-
-Monitor your application state using CloudWatch
-
-
+##### Questions:
+* Compare Simple, Target Step and Scheduling scaling policies.
+* Which metrics we can use?
+* What type of scaling exist in aws?
+* RDS Storage Auto Scaling
+* DynamoDB Auto Scaling
 
 # AWS Cognito
 
@@ -851,9 +882,9 @@ Monitor your application state using CloudWatch
 Login based on email address
 
 At least fields:
-Username
-Email
-Password
+* Username
+* Email
+* Password
 
 * Send verification code on email, email only
 * Configure email sender address, configure reply to address
@@ -916,7 +947,9 @@ Test sign up & sign in process
 
 
 # Monitoring tools
-Presentation kibana+splank+new relic+cloudwatch+ site reliability eng
+#### AWS CloudWatch, X-Ray, ELK, NewRelic, Splunk
+
+
 
 
 
@@ -928,6 +961,7 @@ Presentation kibana+splank+new relic+cloudwatch+ site reliability eng
 
 
 
+`
 
 
 
@@ -938,7 +972,52 @@ Presentation kibana+splank+new relic+cloudwatch+ site reliability eng
 
 
 
+# Final Section
+   
+### Complete lab
+[Build real time board with aws](https://aws.amazon.com/getting-started/hands-on/real-time-leaderboard-amazon-aurora-serverless-elasticache/)
+
+### Final Project
 
 
 
-# Final Project
+Create a web application to upload \ download files.
+
+Stack:
+ECS, ECR, ALB, S3, WAF, RDS or DynamoDB
+Advanced: Cognito
+
+
+
+Develop stage:
+
+* You need to create a web application based on Java or Python or NodeJs.
+* In the database we will store only image metadata.
+* For actual file storage we will use S3 bucket.
+* For the first version we can store all files in the same folder.
+
+Logic:
+* Sign up and Login
+* Upload  file (image, doc etc.)
+* File can be public available or private (if private - then only owner can download it, if public then anyone)
+* Get list of files in db (just metadata)
+* Get metadata about particular file
+* Download particular file
+* Every file has Owner
+* Create S3Service as a portable solution
+
+Flow:
+* Create s3 bucket in aws
+* Create IAM User with programmatic access to get a credentials for local testing (when app have been deployed to the cloud access would be granted via iam role)
+* Develop sign up\login logic using local database
+* Develop S3 service
+* Develop file uploading\downloading logic
+* Create RDS database and connect to it via application
+
+* Db: PostgreSql or mysql
+* File storage: S3
+
+Test it via postman.
+
+Deploy stage:
+You need to deploy your application on EC2 manually and test it via public ip or ALB or elastic ip.
