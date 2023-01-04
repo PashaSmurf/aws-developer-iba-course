@@ -1,6 +1,0 @@
-iba/mapper/UserMapperImpl.class
-iba/exception/ResourceNotFoundException.class
-iba/AppRunnerRedis.class
-iba/service/UserService.class
-iba/service/UserServiceImpl.class
-iba/controller/UserController.class
