@@ -1,0 +1,16 @@
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:dcbapp
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+redis:
+  url: redis://test.63fh95.ng.0001.use2.cache.amazonaws.com:6379
+    #redis://127.0.0.1:6379
+
+server:
+  port: 8081
