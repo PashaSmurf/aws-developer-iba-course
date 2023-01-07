@@ -29,7 +29,7 @@ And after all this just run our pipeline and thats it :)
 
 
 
-For scenario with simle EC2:
+For scenario with simple EC2:
 
 NOTE: Unlike with beanstalk, here all we have is a clear Ubuntu, 
 so we have to install codedeploy  agen and specify appspec.yml for deployment process with deployment scripts
