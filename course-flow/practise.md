@@ -9,7 +9,7 @@
 7. [SAM](#sam)
 8. [RDS](#rds)
 9. [ElasticCache](#elasticcache)
-10. [DynamoDB API Gateway Lambda Secret Manager X-Ray](#DynamoDB API Gateway Lambda Secret Manager X-Ray)
+10. [DynamoDB API Gateway Lambda Secret Manager X-Ray](#lambda-dynamo-apigateway)
 11. [CronJobs via aws: EventBridge + Lambda](#cron-job-event-bridge-lambda)
 12. [S3 + CloudFront, AWS Shield, WAF](#s3-waf-shield)
 13. [Beanstalk](#beanstalk)
@@ -620,7 +620,6 @@ Optional:
 * How does scaling work for both?
 
 <a name="lambda-dynamo-apigateway"></a># ESC & ECR
-
 # DynamoDB API Gateway Lambda Secret Manager X-Ray
 
 #### Create serverless application
@@ -843,6 +842,63 @@ fields @timestamp, @message, action, nonTerminatingMatchingRules.0.action, ruleG
 <a name="beanstalk"></a>
 
 # Beanstalk
+
+#### Create Beanstalk app using 
+
+* Should be High availability (spot+on-demand)
+* Enable X-Ray
+* Enable S3 log storage
+* Enable log streaming to CloudWatch (retention 1 day, lifecycle: delete log after termination)
+* Instances: Min - 2 , Max - 3
+* Processor: arm64
+* Place within 3 zones
+* Scaling:
+  * CPU
+  * Average
+  * Percent
+* Deployment: 
+  * We want our application to be always available and when we have deployment we want to maintain full capacity
+* Create a role with access for SQS and S3
+* Monitoring:
+  * p95
+  * p50
+  * We want to track all the 5xx errors
+* Setup correct update window:
+  * Our application is working daily within market ours (9-18)
+* Add yourself for email notifications
+* Create our own Custom VPC
+* Database
+  * Postgres or Mysql
+  * Storage 7gb
+  * High Availability
+  * Delete DB after env deleted
+* Do few deployments with small updates somewhere
+* Swap ENV URL
+  * Create new ENV with Visible updates and deploy it
+  * Do Swap env url operation
+* Terminate all the environments
+
+
+#### Do Beanstalk Deployment using your own application that stored on S3
+* Prepare good custom configuration, explain your choice
+* Make update and redeploy it
+* Create separate environment with changes and swap urls
+* Terminate it
+
+#### Questions:
+* Why do you need beanstalk?
+* Web server environment vs Worker environment
+* Environment vs application vs Application version
+* What is Environment tier
+* Which type of deployments Beanstalk contain?
+* What is p50,p99, etc. metrics?
+* What is BlueGreen deployments?
+* Which type of deployments do you know?
+* Which platforms are supported by BeanStalk?
+* Why do we need .ebextensions file?
+* Which requirements do we have for .ebextensions file ?
+* Which Monitoring options do we have?
+* Which Logging options do we have?
 
 <a name="autoscaling"></a>
 
@@ -1070,9 +1126,7 @@ Logic:
 Flow:
 
 * Create s3 bucket in aws
-* Create IAM User with programmatic access to get a credentials for local testing (when app have been deployed to the
-  cloud access would be granted via iam role)
-* Develop sign up\login logic using local database
+* Develop sign up\login logic using RDS
 * Develop S3 service
 * Develop file uploading\downloading logic
 * Create RDS database and connect to it via application
