@@ -122,4 +122,30 @@ via GET request. Create a lambda function based on this python app.
 
 - Setup event notification for s3 with EventBridge.
 ![](pictures/eventbridge.png) 
-![](pictures/aws-email.png) 
+![](pictures/aws-email.png)
+
+
+### Create a web rest server with 1 get endpoint and deploy it to ec2 or ecs.
+
+- Create a lambda function to be able to send HTTP requests with a payload based on Python or node js.
+
+![](pictures/httpcronjob.png)
+
+- Create event bridge cron jobs to call your application every 5 min.
+
+![](pictures/eventbridgecron.png)
+
+- Run your application locally and make it available via Ngrok.
+
+![](pictures/ngrok.png)
+
+- Run your application into Ec2 with (ALB or public dns) and update eventBridge payload.
+
+![](pictures/logs.png)
+![](pictures/albngrok.png)
+
+- Check logs via Cloudwatch.
+
+![](pictures/cwcj.png)
+
+
