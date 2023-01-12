@@ -129,13 +129,23 @@ via GET request. Create a lambda function based on this python app.
 
 - Create a lambda function to be able to send HTTP requests with a payload based on Python or node js.
 
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
-![](pictures/.png)
+![](pictures/httpcronjob.png)
+
+- Create event bridge cron jobs to call your application every 5 min.
+
+![](pictures/eventbridgecron.png)
+
+- Run your application locally and make it available via Ngrok.
+
+![](pictures/ngrok.png)
+
+- Run your application into Ec2 with (ALB or public dns) and update eventBridge payload.
+
+![](pictures/logs.png)
+![](pictures/albngrok.png)
+
+- Check logs via Cloudwatch.
+
+![](pictures/cwcj.png)
+
+

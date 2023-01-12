@@ -685,9 +685,80 @@ AWS Lambda & AWS EventBridge
 
 * Run your application locally and make it available via Ngrok
 
-* Run your application into Ec2 with ALB and update eventBridge payload
+* Run your application into Ec2 with (ALB or public dns) and update eventBridge payload
 
 * Note: application here could be from step 2 but also it can be just a simple 1 endpoint app.
+
+Code example Nodejs
+
+```
+'use strict'
+var https = require('https');
+var http = require('http');
+const AWS = require('aws-sdk');
+const kms = new AWS.KMS()
+const parameterStore = new AWS.SSM()
+AWS.config.update({
+    region: process.env.AWS_REGION
+})
+
+
+function httprequest(options) {
+    return new Promise((resolve, reject) => {
+        const req = http.get(options, (res) => {
+            if (res.statusCode < 200 || res.statusCode >= 300) {
+                return reject(new Error('statusCode=' + res.statusCode));
+            }
+            var body = [];
+            res.on('data', function (chunk) {
+                body.push(chunk);
+            });
+            res.on('end', function () {
+                try {
+                    body = JSON.stringify(Buffer.concat(body).toString());
+                } catch (e) {
+                    reject(e);
+                }
+                resolve(body);
+            });
+        });
+        req.on('error', (e) => {
+            reject(e.message);
+        });
+        // send the request
+        req.end();
+    });
+}
+exports.handler = async (event, context) => {
+    ///////////////////
+    const value = "test value"
+    ///////////////////
+    // send request
+    // req props
+    const options = {
+        host: event.host,
+        path: event.path,
+        port: 80,
+        method: event.method
+    };
+    return httprequest(options).then((data) => {
+        const response = {
+            statusCode: 200,
+            body: JSON.stringify(data),
+        };
+        return response;
+    });
+};
+
+```
+
+```
+{
+  "host": "ec2-3-124-4-154.eu-central-1.compute.amazonaws.com",
+  "path": "/api/v1/users",
+  "method": "GET"
+}
+```
 
 ### S3 + eventBridge + Event notification + SNS + Email message
 
