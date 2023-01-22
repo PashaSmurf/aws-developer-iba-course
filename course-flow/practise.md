@@ -15,9 +15,10 @@
 13. [Beanstalk](#beanstalk)
 14. [AWS Autoscaling](#autoscaling)
 15. [AWS Cognito](#cognito)
-16. [Security & encryption: KMS, Secret Manager, SMM](#security-kms)
+16. [Security & encryption: KMS, Secret Manager](#security-kms)
 17. [Monitoring tools](#monitoring-tools)
 18. [AWS Config, System Manager, Amazon Inspector](#config-smm-inspector)
+18. [Architectural section](#architectural-section)
 19. [Final Section](#final-section)
 
 <a name="ec2"></a>
@@ -294,12 +295,12 @@ Goal: access aws services with private network using vpc interface endpoint
 * Copy a queue url from SQS service for the next command.
 * Verify that you got a message in sqs service interface.
 
-Example of the send message command: https://docs.aws.amazon.com/cli/latest/reference/sqs/send-message.html
+Example of sending message command: https://docs.aws.amazon.com/cli/latest/reference/sqs/send-message.html
 
 #### VPC via Cloudformation
 
 * Create a vpc with template.
-* Compare vpc from CloudFormation with manually vpc from taks 1.
+* Compare vpc from CloudFormation with manually vpc from task 1.
 * Create a vpc setup from step 1 via cloudformation.
 * Test it in the same way with ec2 instances.
 
@@ -311,6 +312,9 @@ Example of the send message command: https://docs.aws.amazon.com/cli/latest/refe
 * What is VPC PrivateLink
 * What is Site-to-Site VPN?
 * What is direct connect?
+* Security Group vs NACL
+* Public vs private vs elastic ip addresses
+* DHCP
 
 <a name="esc"></a>
 
@@ -319,21 +323,22 @@ Example of the send message command: https://docs.aws.amazon.com/cli/latest/refe
 #### Deploy web application using ECS Based on Ec2 & Fargate
 
 1. Deploy ECS task using EC2
-
+   1. (You can test it via public ip address and create task directly without a service)
 2. Deploy ECS Task using Fargate
-
-3. Deploy using ECS Service based on Fargate
-   Create custom VPC
-   Create ECR repo
-   Push docker image of java web application
-   Create an alb and target group
-   Create ECS cluster
-   Create task definition
-   Create ecs service inside cluster
-   Run 2 task
-   Test it via alb dns name.
-   Create route53 alias for ALB.
-   Test it via alias
+   1. Deploy using ECS Service based on Fargate 
+   2. Create custom VPC 
+   3. Create ECR repo 
+   4. Push docker image of java web application 
+   5. Create an alb and target group 
+   6. Create ECS cluster
+   7. Create task definition 
+   8. Create ecs service inside cluster 
+   9. Run 2 task 
+   10. Test it via alb dns name. 
+   11. Create route53 alias for ALB. 
+   12. Test it via alias
+   13. Turn on CloudWatch Insight
+       1. _Note_: after cluster was created it can be done only via command line. [Link](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/deploy-container-insights-ECS-cluster.html)
 
 #### Create the same setup as above for ECS using Cloudformation
 
@@ -425,7 +430,7 @@ sam deploy --guided
 * Create custom VPC
 * Place db into private subnet
 * Create mysqldb multi az
-* Connect and test that is works via ec2 bastion или хз как еще придуамй
+* Connect and test that is works via ec2 bastion (or other option)
 * Simulate failover (reboot) Which other options exist?
 * Check that az changes
 
@@ -574,7 +579,7 @@ Goal: You need to create a cloudformation script for dynamodb with Dax cache
 
 # ElasticCache: Redis + Memcahed
 
-### Create web application using Java or Python
+#### Create web application using Java or Python or NodeJs
 
 * RDS Postgresql as a database
 
@@ -606,13 +611,12 @@ Flow:
 * Deploy your application on EC2
 * Test it via load balancer
 
-Optional:
 
-#### Create a redis based library
+#### Create ElasticCache Memcached 
 
-#### Create a memcached based library
+Goal: Create memcached cache and connect to it via our application. Test it with simple request
 
-	Questions:
+###	Questions:
 
 * What is the difference between Redis and Memcached?
 * Which cache strategies do you know?
@@ -715,15 +719,15 @@ Create a backup for previous bucket to another bucket
 
 #### Deploy a static website using S3
 
-Create 2 pages: simple html page + error page for your website
-Add route53 record for your bucket and test your website via record.
-Add js script of html snippet from another bucket and configure fetch from another s3 bucket. Setup right CORS.
+* Create 2 pages: simple html page + error page for your website
+* Add route53 record for your bucket and test your website via record.
+* Add js script of html snippet from another bucket and configure fetch from another s3 bucket. Setup right CORS.
 
 #### Setup lifecycle policy for s3 bucket files
 
-Setup a lifecycle policies for different.
-One file from Standard to OneZone-IA
-Another one from Standard to Standard-IA
+* Set up a lifecycle policies for different.
+* One file from Standard to OneZone-IA
+* Another one from Standard to Standard-IA
 
 #### S3 Encryption: Setup s3 server side encryption
 
@@ -731,8 +735,8 @@ Set encryption for server side for your bucket
 
 #### S3 Encryption: Setup s3 kms encryption
 
-Change encryption for kms using aws manage key
-Change for kms with a custom managed key.
+* Change encryption for kms using aws manage key
+* Change for kms with a custom managed key.
 
 #### Load testing & K6 & artillery
 
@@ -771,7 +775,7 @@ Test load testing using K6 and 2 ec2 instances
 * Create a ipSet with ip address of your k6 instance
 * Create an IP set rule to allow all calls from this IP address and put it first in a list of rules.
 * Test it one more time and see if your requests would be blocked by Rating rule (rule must be in BLOCK mode)
-*
+
 
 All count request
 
@@ -914,6 +918,14 @@ Goal: You need to add Step scaling as a first step, second step would be Schedul
 * Add a Step scaling policy via Cloudformation. Deploy and test it using k6. Take a look on a cloudwatch
 * Add Scheduling scaling policy via cloudformation as a **second** scaling.
 
+#### Autoscaling group lifecycle 
+
+* Create an autoscaling group
+* Move one instance to stand by
+
+
+#### Create a lifecycle hook for your EC2 Instance
+
 ##### Questions:
 
 * Compare Simple, Target Step and Scheduling scaling policies.
@@ -926,7 +938,7 @@ Goal: You need to add Step scaling as a first step, second step would be Schedul
 
 # AWS Cognito
 
-* Create a userPool with signUp and signIn options
+#### Create a userPool with signUp and signIn options
 
 Login based on email address
 
@@ -976,6 +988,87 @@ Test sign up & sign in process
 
 [https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/]
 
+
+#### Create Identity pool based on UserPool
+
+##### Step 1: Create user pool
+* Sign-in experience:
+  * Provider types: Cognito user pool
+  * Sign-in options: User name
+  * User name req-ts: case sensitive
+* Security requirements:
+  * Password policy: Cognito defaults
+  * Multi-factor authentication: No MFA
+  * User account recovery: Enable self-service account recovery (Email only)
+* Sign-up experience:
+  * Leave default settings
+* Message delivery:
+  * Send email with Cognito
+* App:
+  * Use the Cognito hosted UI
+  * Use a Cognito domain
+  * Public client
+  * Generate a client secret
+  * Callback & Sign-out URLs:
+    * https://www.amazon.com
+  * OpenID Connect scopes:
+    * All of them
+* Launch hosted UI (App client -> Hosted UI -> View Hosted UI)
+  * sign up
+  * sign in
+
+##### Step 2: Create Identity pool
+* Create Identity pool:
+  * Enable access to unauthenticated identities
+  * Providers:
+    * cognito userpool from prev step
+  * create new IAM roles
+* Edit IAMs policies:
+  * Cognito_POOLNAMEAuth_Role:
+    * S3
+      * list
+      * All resources
+* Create Identity
+* Check Identity in console
+* Get temporary credentials for our identity
+* Check that temp creds
+
+_Notes_:
+1. How to get id_token to create identity?
+   * Proceed this configuration to get id_token.
+   * In the login pop up just log in with your user
+
+![img.png](assets/cognito.png)
+2. How to create identity?
+   * Endpoint: POST  [https://cognito-identity.us-east-1.amazonaws.com/](https://cognito-identity.us-east-1.amazonaws.com/)
+   * Additional headers:
+   * CONTENT-TYPE : ```application/x-amz-json-1.1```
+     * X-AMZ-TARGET : ```com.amazonaws.cognito.identity.model.AWSCognitoIdentityService.GetId```
+   * Json body:
+     ```
+     {
+     "IdentityPoolId": "YOUR_IDENTITY_POOL_ID",
+     "Logins": {
+     "cognito-idp.eu-north-1.amazonaws.com/YOUR_USERPOOL_ID”: "ID_TOKEN"
+     }
+     }
+     ```
+3. How to get temp credentials ?
+   * Endpoint: POST  [https://cognito-identity.us-east-1.amazonaws.com/](https://cognito-identity.us-east-1.amazonaws.com/)
+   * Additional headers:
+     * CONTENT-TYPE : ```application/x-amz-json-1.1```
+     * X-AMZ-TARGET : ```com.amazonaws.cognito.identity.model.AWSCognitoIdentityService.GetCredentialsForIdentity```
+   
+   * Json body:
+    ```
+   {
+   "IdentityId": "YOUR_IDENTITY_ID",
+   "Logins": {
+   "cognito-idp.eu-north-1.amazonaws.com/YOUR_USERPOOL_ID”: "ID_TOKEN"
+   }
+   }
+    ```
+
 #### Questions:
 
 * User pool vs identity pool
@@ -986,13 +1079,40 @@ Test sign up & sign in process
 
 <a name="security-kms"></a>
 
-# Security & encryption: KMS, Secret Manager, SMM
+# Security & encryption: KMS, Secret Manager
 
 ## Secret Manager
 
-#### 
+#### RDS + Secret Manager 
+Goal: Create RDS DB and save credentials via Secret Manager. Configure Rotation
 
 
+#### Secret Manager + Lambda
+Goal: Develop Lambda function that will receive parameter name that exist in Secret Manager and will return unencrypted Value back. Attach ALB for this lamb da and test.
+
+#### Secret Manager + ECS deployment
+
+Goal: Develop small web application that will take 2 environments variables and return then within GET rest endpoint
+
+* Env variables should be stored in Secret Manager and Encrypted with Customer Key
+* You should create first version manually
+* Second version should be created via Cloudformation
+
+
+#### Secret Manager + Recovery Window
+Goal: Create new secret and delete it via cli to avoid recovery window
+
+#### Questions:
+
+* Why do we need Secret Manager?
+* Secret Manager vs Systems Manager Parameter Store vs Parameter store Advanced
+* What metadata secret contains?
+* What is Version for secret?
+* What is secret rotation? How it works?
+* User Secret vs Master Secret (different by permissions) how it can be used?
+* What is Recovery window for secret manager? (days)
+* How we can delete secret without a recovery window?
+* How price calculated for secret?
 
 ## KMS
 
@@ -1041,9 +1161,6 @@ FLow:
 
 4. Clear all ebs volumes and snapshots
 
-#### Customer Managed Keys
-
-
 #### KMS Automatic and Manual keys rotation
 
 [Guide](https://aws.amazon.com/premiumsupport/knowledge-center/rotate-keys-customer-managed-kms/)
@@ -1089,6 +1206,10 @@ Requirements:
 
 # AWS Config, System Manager, Amazon Inspector
 
+
+<a name="architectural-section"></a>
+# Architectural section
+
 <a name="final-section"></a>
 
 # Final Section
@@ -1101,16 +1222,19 @@ Requirements:
 
 Create a web application to upload \ download files.
 
-Stack:
-ECS, ECR, ALB, S3, WAF, RDS or DynamoDB
+AWS Stack:
+ECS, ECR, ALB, S3, WAF, RDS or DynamoDB, Route53, ACM, ElasticCache(Redis) or DAX
 Advanced: Cognito
 
 Develop stage:
 
 * You need to create a web application based on Java or Python or NodeJs.
-* In the database we will store only image metadata.
-* For actual file storage we will use S3 bucket.
-* For the first version we can store all files in the same folder.
+* In the database we will store only **image metadata**.
+* For actual file storage we will use **S3 bucket**.
+* For the first version we can store all files in the same folder. Then you need to implement logic to create a separate folder
+for each user where his files will be stored.
+* For the application layer cache you should use redis or dax (based on a db choice)
+
 
 Logic:
 
@@ -1121,10 +1245,14 @@ Logic:
 * Get metadata about particular file
 * Download particular file
 * Every file has Owner
-* Create S3Service as a portable solution
+* Create S3Service as a portable solution (meaning you can share service with anyone, and it will require no chance to use it
+with different logic)
 
 Flow:
 
+_Please create your own flow and check it with me_
+
+##### Example:
 * Create s3 bucket in aws
 * Develop sign up\login logic using RDS
 * Develop S3 service
@@ -1134,8 +1262,8 @@ Flow:
 * Db: PostgreSql or mysql
 * File storage: S3
 
-Test it via postman.
+##### Test it via postman.
 
 Deploy stage:
 
-* You need to deploy your application on EC2 manually and test it via public ip or ALB or elastic ip.
+* Application should be deployed by hands and the last version should be based on Cloudformation.
