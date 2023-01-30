@@ -21,6 +21,9 @@ Steps for Route53:
 * You also can try to create one more network interface and attach it to EC2, than update your route53 record and with nslookup retrieve both ips
 
 
+![img.png](pictures/route_53.png)
+
+![img_2.png](pictures/route_dhcp.png)
 Steps for custom dns:
 
 * Create VPC with 10.0.0.0/16 sidr
@@ -40,6 +43,8 @@ Security group:
 * For DNS Ec2 -> DNS 53 should be opened
 * For App and DB -> ICMP for ping and SSH
 
+
+![img_1.png](pictures/dhcp_custom_dns.png)
 Configure dns server:
 
 1. Login to on-premise DNS server (via SSH into VPN server first)
@@ -53,6 +58,10 @@ Configure dns server:
 ``` yum install bind bind-utils –y```
 
 3. Create file /var/named/iba.internal.zone [Replace X.X with your App server IP]
+
+```
+vim /var/named/iba.internal.zone
+```
 
 ```
 $TTL 86400
@@ -76,6 +85,11 @@ db    IN  A   10.0.x.x
 ```
 
 4. Create file /etc/named.conf [Replace X.X with your DNS server IP]
+
+
+```
+vim /etc/named.conf
+```
 
 ```
    options {
