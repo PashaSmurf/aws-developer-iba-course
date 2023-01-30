@@ -2,7 +2,26 @@ Architecture
 
 ![img.png](pictures/custom-dns-vpc.png)
 
-Steps:
+
+Steps for Route53:
+
+* Create VPC with 10.0.0.0/16 sidr
+* Create 2 subnets (private 10.0.0.0/24 and public 10.0.10./16)
+* Attach internet gateway
+* Create instances: One in public subnet called WebApp, SG: allow ssh, ICMP
+* Create instances: One in private subnet called DB, SG all ssh, ICMP
+* Create Custom DHCP set:
+  * Domain name: iba.internal
+  * Domain name servers: AmazonProvidedDNS
+* Go to route53
+* Create Private Hosted Zone (iba.internal)
+* Create two records:
+  * bastion.iba.internal	A	Simple	-	(private ip) 
+  * dev-db.iba.internal	A	Simple	-	(private ip)
+* You also can try to create one more network interface and attach it to EC2, than update your route53 record and with nslookup retrieve both ips
+
+
+Steps for custom dns:
 
 * Create VPC with 10.0.0.0/16 sidr
 * Create 2 subnets (private 10.0.0.0/24 and public 10.0.10./16)
