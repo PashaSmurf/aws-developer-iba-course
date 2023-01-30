@@ -1268,18 +1268,26 @@ Requirements:
 
 
 <a name="monitoring-tools"></a>
-
 # Monitoring tools
 
 #### AWS CloudWatch, X-Ray, ELK, NewRelic, Splunk
 
-<a name="config-smm-inspector"></a>
 
+
+
+<a name="config-smm-inspector"></a>
 # AWS Config, System Manager, Amazon Inspector
+
+
+
 
 
 <a name="architectural-section"></a>
 # Architectural section
+
+
+
+
 
 <a name="final-section"></a>
 
